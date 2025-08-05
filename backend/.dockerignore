@@ -1,0 +1,13 @@
+# Ignorar arquivos de build
+target/
+build/
+
+# Ignorar configs locais e sensíveis
+.env
+*.log
+*.pem
+
+# Ignorar diretórios do Git e IDE
+.git/
+.idea/
+*.iml
