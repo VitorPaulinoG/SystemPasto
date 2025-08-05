@@ -1,0 +1,25 @@
+services:
+  db-pasto:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - "5432:5432"
+    networks:
+      - system-pasto-net
+  app:
+    build:
+      context: .
+    image: system-pasto:1.0.0
+    depends_on:
+      - db-pasto
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    networks:
+      - system-pasto-net
+networks:
+  system-pasto-net:
